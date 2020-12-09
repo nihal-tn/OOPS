@@ -6,6 +6,10 @@ class ship
     int year;
     string name;
     public:
+    ship()
+    {
+
+    }
     ship(int year_,string name_)
     {
         year=year_;
@@ -77,32 +81,27 @@ class CargoShip:public ship
 };
 int main()
 {
-ship *list[10];
-for (int i = 0; i <5; i++)
-{
-    ship *s;
-    int a,b;
-    string c;
-    cout<<"enter the name of the ship , year of manufacture and maximum capacity\n";
-    cin>>c>>a>>b;
-    CruiseShip sh(b,a,c);
-    s=&sh;
-    *list[i]=*s;
-}
-for (int i = 5; i <10; i++)
-{
-    ship *s;
-    int a,b;
-    string c;
-    cout<<"enter the name of the ship , year of manufacture and maximum capacity\n";
-    cin>>c>>a>>b;
-    CargoShip sh(b,a,c);
-    s=&sh;
-    *list[i]=*s;
-}
-for (int i = 0; i <10; i++)
-{
-    list[i]->print();
-}
-
+    ship *list=new ship[10];
+    for (int i = 0; i < 5; i++)
+    {
+        cout<<"enter the max capacity , year of manufacturing and name of the Cruise ship\n";
+        int max,year;
+        string name;
+        cin>>max>>year>>name;
+        CruiseShip sh(max,year,name);
+        *(list+i)=sh;
+    }
+    for (int i = 5; i < 10; i++)
+    {
+        cout<<"enter the max capacity , year of manufacturing and name of the Cruise ship\n";
+        int max,year;
+        string name;
+        cin>>max>>year>>name;
+        CargoShip sh(max,year,name);
+        *(list+i)=sh;
+    }
+    for (int i=0;i<10;i++)
+    {
+        (list+i)->print();
+    }
 }
