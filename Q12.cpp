@@ -2,10 +2,10 @@
 using namespace std;
 class ship
 {
-    protected:
+protected:
     int year;
     string name;
-    public:
+public:
     ship()
     {
 
@@ -38,9 +38,9 @@ class ship
 };
 class CruiseShip:public ship
 {
-    protected:
+protected:
     int max_passenger;
-    public:
+public:
     CruiseShip(int max,int year_,string name_):ship(year_,name_)
     {
         max_passenger=max;
@@ -61,7 +61,7 @@ class CruiseShip:public ship
 class CargoShip:public ship
 {
     int cargo_capacity;
-    public:
+public:
     CargoShip(int capacity_,int year_,string name_):ship(year_,name_)
     {
         cargo_capacity=capacity_;
@@ -81,27 +81,42 @@ class CargoShip:public ship
 };
 int main()
 {
-    ship *list=new ship[10];
-    for (int i = 0; i < 5; i++)
+    int n,a, i=0,year,max, j=0;
+    string name;
+    cout<<" enter the number of ships that you \t\t  want to add the details of\n"<<endl;
+    cin>>n;
+    ship *list[10];
+    ship *ptr=new ship[10];
+    while(i<n)
     {
-        cout<<"enter the max capacity , year of manufacturing and name of the Cruise ship\n";
-        int max,year;
-        string name;
-        cin>>max>>year>>name;
-        CruiseShip sh(max,year,name);
-        *(list+i)=sh;
+        cout<<"enter the type of ship\n (1)for Cruise Ship \n(2)for Cargo Ship\n";
+        cin>>a;
+        if(a==1)
+        {
+            cout<<"enter the maximum passenger capacity\n year of manufacturing \nand name of the Cruise Ship\n";
+            cin>>max>>year>>name;
+            CruiseShip sh(max,year,name);
+            *(ptr+i)=sh;
+            list[i]=ptr+i;
+            i++;
+        }
+        else if(a==2)
+        {
+            cout<<"enter the maximum cargo capacity\n year of manufacturing \nand name of the Cargo Ship\n";
+            cin>>max>>year>>name;
+            CruiseShip sh(max,year,name);
+            *(ptr+i)=sh;
+            list[i]=ptr+i;
+            i++;
+        }
+        else
+        {
+            cout<<"enter a valid input\n";
+        }
     }
-    for (int i = 5; i < 10; i++)
+    while(j<n)
     {
-        cout<<"enter the max capacity , year of manufacturing and name of the Cruise ship\n";
-        int max,year;
-        string name;
-        cin>>max>>year>>name;
-        CargoShip sh(max,year,name);
-        *(list+i)=sh;
-    }
-    for (int i=0;i<10;i++)
-    {
-        (list+i)->print();
+        list[j]->print() ;
+        j++;
     }
 }
