@@ -570,7 +570,7 @@ void menu()
     cout << "\n__________________________________________";
     cout << "\nYour Choice -- \n";
 }
-void subq(RB_TREE current)
+void subq(RB_TREE *current)
 {
     int sub_option, i;
     while(1)
@@ -579,9 +579,9 @@ void subq(RB_TREE current)
         cin>>sub_option;
         if(sub_option==1)
         {
+            cout<<"enter the element that you want to insert\nand enter '-1' when you want to stop inserting\n";
             while(1)
             {
-                cout<<"enter the element that you want to insert\nand enter '-1' when you want to stop inserting\n";
                 cin>>i;
                 if(i==-1)
                 {
@@ -589,7 +589,7 @@ void subq(RB_TREE current)
                 }
                 else
                 {
-                    current.InsertNode(i);
+                    current->InsertNode(i);
                 }
             }
         }
@@ -597,7 +597,7 @@ void subq(RB_TREE current)
         {
             cout<<"enter the element that you want to search for\n";
             cin>>i;
-            if(current.TreeSearch(i))
+            if(current->TreeSearch(i))
             {
                 cout<<"given element is present in the tree\n";
             }
@@ -610,19 +610,19 @@ void subq(RB_TREE current)
         {
             cout<<"enter the element that you want to delete\n";
             cin>>i;
-            current.Remove(i) ;
+            current->Remove(i) ;
         }
         else if(sub_option==4)
         {
-            current.PreorderTraversal(current.GetRoot()) ;
+            current->PreorderTraversal(current->GetRoot()) ;
         }
         else if(sub_option==5)
         {
-            current.PostorderTraversal(current.GetRoot()) ;
+            current->PostorderTraversal(current->GetRoot()) ;
         }
         else if(sub_option==6)
         {
-            current.InorderTraversal(current.GetRoot()) ;
+            current->InorderTraversal(current->GetRoot()) ;
         }
         else if(sub_option==7)
         {
@@ -668,8 +668,7 @@ int main()
             cin>>i;
             if(tree_no>=i) 
             {
-                current=*list[i-1];
-                subq(current) ;
+                subq(list[i-1]) ;
             }
             else
             cout<<"tree not found\n";
